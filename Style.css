@@ -1,0 +1,330 @@
+/* Reset básico y configuración de caja */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Animaciones --- */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(15deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2) rotate(180deg);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Estilos del Body y Fondo --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    /* Fondo con degradado animado en tonos de rosa */
+    background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 25%, #ff69b4 50%, #ff1493 75%, #c71585 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    padding: 20px;
+    position: relative;
+    overflow: hidden; 
+}
+
+/* --- Corazones Flotantes de Fondo --- */
+.hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    font-size: 24px;
+    animation: float 8s infinite ease-in-out;
+    filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6));
+}
+
+.heart:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+.heart:nth-child(2) { left: 20%; top: 60%; animation-delay: 1s; }
+.heart:nth-child(3) { left: 30%; top: 30%; animation-delay: 2s; }
+.heart:nth-child(4) { left: 40%; top: 70%; animation-delay: 0.5s; }
+.heart:nth-child(5) { left: 60%; top: 40%; animation-delay: 1.5s; }
+.heart:nth-child(6) { left: 70%; top: 80%; animation-delay: 2.5s; }
+.heart:nth-child(7) { left: 80%; top: 25%; animation-delay: 1s; }
+.heart:nth-child(8) { left: 90%; top: 55%; animation-delay: 2s; }
+
+.sparkles {
+    position: absolute;
+    font-size: 16px;
+    animation: sparkle 3s infinite ease-in-out;
+}
+
+.sparkles:nth-child(9) { left: 15%; top: 15%; animation-delay: 0.5s; }
+.sparkles:nth-child(10) { left: 85%; top: 70%; animation-delay: 1.5s; }
+.sparkles:nth-child(11) { left: 50%; top: 10%; animation-delay: 2.5s; }
+
+
+/* --- Contenedor Principal (Tarjeta) --- */
+.container {
+    background: linear-gradient(145deg, #ffffff 0%, #fff5f7 100%);
+    border-radius: 40px;
+    padding: 60px 50px;
+    box-shadow: 0 30px 80px rgba(255, 105, 180, 0.5), 
+                0 0 0 8px rgba(255, 255, 255, 0.3), 
+                inset 0 2px 20px rgba(255, 182, 193, 0.2);
+    text-align: center;
+    max-width: 550px;
+    position: relative;
+    z-index: 1; 
+    animation: slideIn 0.8s ease-out; 
+    backdrop-filter: blur(10px);
+}
+
+/* Borde decorativo y borroso alrededor del contenedor */
+.container::before {
+    content: "";
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    background: linear-gradient(45deg, #ff1493, #ff69b4, #ffb6c1, #ffd1dc);
+    border-radius: 42px;
+    z-index: -1;
+    opacity: 0.6;
+    filter: blur(20px); 
+}
+
+/* --- Títulos --- */
+h1 {
+    /* Texto con degradado y sombra rosa */
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 50%, #c71585 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    font-size: 38px;
+    font-weight: 800;
+    text-shadow: 0 4px 10px rgba(255, 105, 180, 0.3);
+    letter-spacing: 1px;
+    animation: pulse 3s infinite ease-in-out;
+}
+
+.subtitle {
+    color: #ff69b4;
+    font-size: 20px;
+    margin-bottom: 35px;
+    font-style: italic;
+    font-weight: 500;
+    text-shadow: 0 2px 5px rgba(255, 105, 180, 0.2);
+}
+
+/* --- Contenedor de Imagen --- */
+.image-container {
+    margin-bottom: 35px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4);
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Efecto de brillo/luz sobre la imagen */
+.image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shine 3s infinite;
+    z-index: 1;
+}
+
+@keyframes shine {
+    to {
+        left: 100%;
+    }
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 25px;
+    border: 6px solid rgba(255, 182, 193, 0.6);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: block;
+}
+
+.image-container:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 20px 50px rgba(255, 105, 180, 0.6);
+}
+
+/* --- Contenedor del Mensaje --- */
+.message {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e9 50%, #ffd1dc 100%);
+    color: #c71585;
+    font-size: 17px;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    padding: 25px;
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2),
+                inset 0 2px 10px rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
+
+/* Borde degradado para el mensaje */
+.message::before {
+    content: "";
+    position: absolute;
+    top: -3px; left: -3px; right: -3px; bottom: -3px;
+    background: linear-gradient(135deg, #ff69b4, #ff1493, #ffb6c1);
+    border-radius: 20px;
+    z-index: -1;
+}
+
+/* --- Contenedor de Audio (iFrame) --- */
+.audio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 40px;
+    background: linear-gradient(135deg, rgba(255, 240, 245, 0.6), rgba(255, 228, 233, 0.6));
+    border-radius: 20px;
+    box-shadow: inset 0 2px 10px rgba(255, 105, 180, 0.1);
+    min-height: 150px;
+}
+
+.audio-label {
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    font-size: 18px;
+    text-shadow: 0 2px 5px rgba(255, 105, 180, 0.3);
+}
+
+/* Estilo del iFrame para ocultar el copy/texto y dejar solo el botón */
+iframe {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+    border: 4px solid #ffb6c1;
+    height: 80px; 
+    overflow: hidden; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+iframe:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+}
+
+/* --- Pie de Página --- */
+.footer {
+    margin-top: 30px;
+    background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Estilos para los corazones fijos en las esquinas */
+.decorative-hearts {
+    position: absolute;
+    font-size: 40px;
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.decorative-hearts:nth-of-type(1) {
+    top: 20px;
+    left: 20px;
+    transform: rotate(-15deg);
+}
+
+.decorative-hearts:nth-of-type(2) {
+    bottom: 20px;
+    right: 20px;
+    transform: rotate(15deg);
+}
+
+/* --- Responsive Design Básico --- */
+@media (max-width: 600px) {
+    .container {
+        padding: 40px 30px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .message {
+        font-size: 15px;
+        padding: 20px;
+    }
+}
